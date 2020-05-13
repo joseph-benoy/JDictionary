@@ -139,11 +139,15 @@ class Ui_MainWindow(object):
         self.Tab.setTabText(self.Tab.indexOf(self.TranlateTab), _translate("MainWindow", "Translate"))
     def checkWord(self):
     	self.word = self.WordInput.text()
-    	print(self.word)  
-    	self.updateMeaningTab() 
-    	self.updateSynTab()
-    	self.updateAnTab()
-    	self.updateTransalateTab()
+    	print(self.word)
+    	try:
+	    	self.updateMeaningTab() 
+	    	self.updateSynTab()
+	    	self.updateAnTab()
+	    	self.updateTransalateTab()
+    	except:
+	    	QMessageBox.critical(MainWindow,'Error!','Bad network connection!')
+
     def updateMeaningTab(self):
     	WordMeaningData = self.dictionary.meaning(self.word)
     	MeaningKeys = list(WordMeaningData.keys())
